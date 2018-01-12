@@ -7,4 +7,4 @@
 
 lxml==3.4.4
 cssselect==0.9.1
-pupa== 0.8.0
+pupa==0.8.0

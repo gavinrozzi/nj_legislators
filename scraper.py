@@ -234,21 +234,6 @@ class NJPersonScraper(Scraper, MDBMixin):
                 person.add_contact_detail(type='email', value=email, note='District Office')
 
             yield person
-
-    def _construct_email(self, chamber, sex, last_name):
-        # translate accents to non-accented versions for use in an
-        # email and drop apostrophes and hyphens
-        last_name = ''.join(c for c in
-                            unicodedata.normalize('NFD', str(last_name))
-                            if unicodedata.category(c) != 'Mn')
-        last_name = last_name.replace("'", "").replace("-", "").replace(' ', '')
-        sex_noun = {'M': 'm',
-                    'F': 'w'}[sex]
-
-        if chamber == 'lower':
-            return 'As{}{}@njleg.org'.format(sex_noun, last_name)
-        else:
-return 'Sen' + last_name + '@njleg.org'
-
+            
 scraperwiki.sqlite.save(unique_keys=['person'], data={"name": "district", "party": "image"})
 
